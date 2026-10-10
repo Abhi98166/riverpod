@@ -200,12 +200,9 @@ class ProviderScheduler {
   }
 
   void debugScheduleFrame(void Function() onEvent) {
-    if (!kDebugMode || _disposed) return;
+    if (!kDebugMode) return;
 
-    Future.microtask(() {
-      if (_disposed) return;
-      onEvent();
-    });
+    Future.microtask(onEvent);
   }
 
   /// Schedules a provider to be disposed.
